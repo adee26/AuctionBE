@@ -23,7 +23,7 @@ public class PersistenceConfig {
     public SpringLiquibase getSpringLiquibase(){
         SpringLiquibase springLiquibase = new SpringLiquibase();
         springLiquibase.setChangeLog("classpath:db/changelog/liquibase-changelog.xml");
-        springLiquibase.setDataSource(this.getDataSource());
+        springLiquibase.setDataSource(getDataSource());
         return springLiquibase;
     }
 }
