@@ -1,16 +1,11 @@
 package com.sda.auction.entitites;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Service;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
-@Setter
+@Entity(name = "purchasing")
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Purchasing {

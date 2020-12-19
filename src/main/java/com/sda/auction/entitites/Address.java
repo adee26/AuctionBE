@@ -5,11 +5,10 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity
+@Entity(name = "address")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
