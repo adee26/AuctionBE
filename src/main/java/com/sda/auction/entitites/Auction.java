@@ -22,13 +22,13 @@ public class Auction {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
-    @OneToMany (mappedBy = "auction")
+    @OneToMany(mappedBy = "auction")
     private List<Bidding> biddingList;
 
-    @OneToOne (mappedBy = "auction")
+    @OneToOne(mappedBy = "auction")
     private Purchasing purchasing;
 
     @ManyToOne
-    @JoinColumn (name = "category_id")
+    @JoinColumn(name = "category_id")
     private Category category;
 }

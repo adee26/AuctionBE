@@ -15,10 +15,12 @@ public class Purchasing {
     private String city;
     private String address;
 
+    @ToString.Exclude
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ToString.Exclude
     @OneToOne
     @JoinColumn(name = "auction_id")
     private Auction auction;

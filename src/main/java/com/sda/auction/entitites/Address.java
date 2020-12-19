@@ -20,17 +20,8 @@ public class Address {
     @Column
     private String Address;
 
+    @ToString.Exclude
     @OneToOne
     @JoinColumn (name = "user_id")
     private User user;
-
-    @OneToMany (mappedBy = "auction")
-    private List<Bidding> biddingList;
-
-    @OneToOne (mappedBy = "auction")
-    private Purchasing purchasing;
-
-    @ManyToOne
-    @JoinColumn (name = "category_id")
-    private Category category;
 }
