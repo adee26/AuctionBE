@@ -16,6 +16,7 @@ public class Category {
     private String name;
     private String description;
 
+    @ToString.Exclude
     @OneToMany(mappedBy = "category")
     private List<Auction> auctionList;
 }
