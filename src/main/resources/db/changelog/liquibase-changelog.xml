@@ -8,4 +8,8 @@
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd">
 
         <include file="db/changelog/test.sql"/>
+        <include file="db/changelog/user_table.sql"/>
+        <include file="db/changelog/address_table.sql"/>
+        <include file="db/changelog/category_table.sql"/>
+        <include file="db/changelog/auction_table.sql"/>
 </databaseChangeLog>
