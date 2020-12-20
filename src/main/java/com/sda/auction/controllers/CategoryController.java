@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@RestController("/api/v1/categories")
+@RestController
+@RequestMapping("/api/v1/categories")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CategoryController {
     private final CategoryService categoryService;
@@ -34,5 +35,8 @@ public class CategoryController {
         categoryService.updateCategory(category, id);
     }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteCategory(@PathVariable("id") int id){
+        categoryService.deleteById(id);
+    }
 }
