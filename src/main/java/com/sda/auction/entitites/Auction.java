@@ -18,6 +18,7 @@ public class Auction {
     private String description;
     private String photos;
     private int minimumPrice;
+    @Column(name = "buy_now")
     private int buyNowPrice;
     private LocalDateTime startDate;
     private LocalDateTime endDate;

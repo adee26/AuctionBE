@@ -18,7 +18,7 @@ public class Address {
     @Column
     private String city;
     @Column
-    private String Address;
+    private String address;
 
     @ToString.Exclude
     @OneToOne

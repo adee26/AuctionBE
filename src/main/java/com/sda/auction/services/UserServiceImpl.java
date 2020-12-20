@@ -6,6 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +20,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public void createUser(User user) {
-        userRepository.save(user);
+    public User createUser(User user) {
+       user.setCreationDate(Date.from(Instant.now()));
+       return userRepository.save(user);
     }
 
     @Override
@@ -36,15 +41,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateUser(User user) {
-        Optional<User> userOptional = userRepository.findById(user.getId());
+    public User updateUser(User user, int id) throws Exception{
+        Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isPresent()){
             userOptional.get().setAddress(user.getAddress());
             userOptional.get().setAccountType(user.getAccountType());
             userOptional.get().setEmail(user.getEmail());
             userOptional.get().setName(user.getName());
             userOptional.get().setPassword(user.getPassword());
-            userRepository.save(userOptional.get());
+            return userRepository.save(userOptional.get());
+        }else {
+            throw new Exception("User not found");
         }
     }
 }
