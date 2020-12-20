@@ -16,7 +16,7 @@ public class CategoryServiceImpl implements CategoryService{
     private final CategoryRepository categoryRepository;
 
     @Override
-    public void createCategories(Category category) {
+    public void createCategory(Category category) {
         categoryRepository.save(category);
     }
 
@@ -31,13 +31,15 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public void updateCategory(Category category) {
-        Optional<Category> categoryOptional = categoryRepository.findById(category.getId());
+    public void updateCategory(Category category, int id) throws Exception {
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
         if(categoryOptional.isPresent()){
             categoryOptional.get().setDescription(category.getDescription());
             categoryOptional.get().setName(category.getName());
             categoryOptional.get().setAuctionList(category.getAuctionList());
             categoryRepository.save(categoryOptional.get());
+        } else {
+            throw new Exception("Cannot find category");
         }
 
     }

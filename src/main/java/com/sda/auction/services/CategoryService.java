@@ -8,10 +8,10 @@ import java.util.Optional;
 
 @Service
 public interface CategoryService {
-    void createCategories(Category category);
+    void createCategory(Category category);
     List<Category> findAllCategories();
     Optional<Category> findById(int id);
-    void updateCategory(Category category);
+    void updateCategory(Category category, int id) throws Exception;
     void deleteById(int id);
 
 }
