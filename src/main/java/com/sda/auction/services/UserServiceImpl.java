@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User createUser(User user) {
-       user.setCreationDate(Date.from(Instant.now()));
-       return userRepository.save(user);
+        user.setCreationDate(Date.from(Instant.now()));
+        return userRepository.save(user);
     }
 
     @Override

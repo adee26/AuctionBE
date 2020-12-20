@@ -21,4 +21,5 @@ public class Bidding {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
 }

@@ -14,8 +14,8 @@ public class PersistenceConfig {
         return DataSourceBuilder.create()
                 .driverClassName("com.mysql.cj.jdbc.Driver")
                 .url("jdbc:mysql://localhost:3306/auction")
-                .username("test")
-                .password("test")
+                .username("root")
+                .password("root")
                 .build();
     }
 
