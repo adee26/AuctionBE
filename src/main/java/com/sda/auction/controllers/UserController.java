@@ -10,27 +10,27 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/users")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     public Optional<User> findUserById(@PathVariable int id){
         return userService.findById(id);
     }
 
-    @GetMapping("/users")
+    @GetMapping()
     public List<User> findAllUsers(){
         return userService.findAllUsers();
     }
 
-    @PostMapping("/users")
+    @PostMapping()
     public void saveUser(@RequestBody User user){
         userService.createUser(user);
     }
 
-    @PutMapping("/users/{id}")
+    @PutMapping()
     public User editUser(@RequestBody User user, @PathVariable int id) throws Exception {
         return userService.updateUser(user, id);
     }
