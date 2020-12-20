@@ -12,8 +12,6 @@ public class Purchasing {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String city;
-    private String address;
 
     @ToString.Exclude
     @ManyToOne

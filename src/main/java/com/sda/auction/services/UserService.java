@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    void createUser(User user);
+    User createUser(User user);
     List<User> findAllUsers();
     Optional<User> findById(int id);
     void deleteById(int id);
-    void updateUser(User user);
+    User updateUser(User user, int id) throws Exception;
 }
