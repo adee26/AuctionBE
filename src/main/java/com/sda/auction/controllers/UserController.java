@@ -34,4 +34,9 @@ public class UserController {
     public User editUser(@RequestBody User user, @PathVariable int id) throws Exception {
         return userService.updateUser(user, id);
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteById(id);
+    }
 }

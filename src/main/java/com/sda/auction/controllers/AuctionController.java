@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @AllArgsConstructor(onConstructor = @__(@Autowired))
+@RequestMapping("/api/v1/auctions/")
 public class AuctionController {
     private final AuctionService auctionService;
 
@@ -20,13 +21,23 @@ public class AuctionController {
     }
 
     @GetMapping()
-    public List<Auction> findAllUsers(){
+    public List<Auction> findAllAuctions(){
         return auctionService.findAllAuctions();
     }
 
     @PostMapping()
     public void saveAuction(@RequestBody Auction auction){
         auctionService.createAuction(auction);
+    }
+
+    @PutMapping()
+    public Auction editAuction(@RequestBody Auction auction, @PathVariable int id) throws Exception {
+        return auctionService.updateAuction(auction, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAuction(@PathVariable("id") int id){
+        auctionService.deleteById(id);
     }
 
 }

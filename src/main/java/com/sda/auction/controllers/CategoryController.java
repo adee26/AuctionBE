@@ -34,7 +34,6 @@ public class CategoryController {
     public void editUser(@PathVariable("id") int id, @RequestBody Category category) throws Exception{
         categoryService.updateCategory(category, id);
     }
-
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") int id){
         categoryService.deleteById(id);
