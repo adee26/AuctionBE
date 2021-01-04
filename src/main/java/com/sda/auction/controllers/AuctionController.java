@@ -34,9 +34,10 @@ public class AuctionController {
         return auctionService.updateAuction(auction, id);
     }
 
-    @DeleteMapping()
-    public void deleteAuction(@RequestBody Auction auction) {
-        auctionService.deleteById(auction.getId());
+    
+    @DeleteMapping("/{id}")
+    public void deleteAuction(@PathVariable("id") int id){
+        auctionService.deleteById(id);
     }
 
 }
