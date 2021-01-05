@@ -1,9 +1,8 @@
-CREATE TABLE user
-(
-    id            INT PRIMARY KEY AUTO_INCREMENT,
-    email         VARCHAR(255),
-    password      VARCHAR(255),
-    name          VARCHAR(255),
+CREATE TABLE user(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     creation_date DATE,
-    type          VARCHAR(255)
-)
+    account_type VARCHAR(255)
+);
