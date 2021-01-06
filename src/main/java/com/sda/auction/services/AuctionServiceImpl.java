@@ -8,17 +8,21 @@ import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class AuctionServiceImpl implements AuctionService {
+    private static final int AUCTION_DAYS = 7;
     private final AuctionRepository auctionRepository;
 
     @Override
     public Auction createAuction(Auction auction) {
-        auction.setStartDate(LocalDateTime.from(Instant.now()));
+        auction.setStartDate(LocalDateTime.ofInstant(Instant.now(), ZoneId.of("Europe/Bucharest")));
+        auction.setEndDate(LocalDateTime.ofInstant(Instant.now().plus(AUCTION_DAYS, ChronoUnit.DAYS), ZoneId.of("Europe/Bucharest")));
         return auctionRepository.save(auction);
     }
 
