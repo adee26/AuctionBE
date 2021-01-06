@@ -29,12 +29,11 @@ public class AuctionController {
         auctionService.createAuction(auction);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     public Auction editAuction(@RequestBody Auction auction, @PathVariable int id) throws Exception {
         return auctionService.updateAuction(auction, id);
     }
 
-    
     @DeleteMapping("/{id}")
     public void deleteAuction(@PathVariable("id") int id){
         auctionService.deleteById(id);
