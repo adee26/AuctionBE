@@ -1,10 +1,9 @@
 package com.sda.auction.entitites;
 
-import com.sda.auction.entitites.enums.UserRoles;
+import com.sda.auction.entitites.enums.UserRole;
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class User {
     private Date creationDate;
     private String accountType;
     @Column(name = "role")
-    private UserRoles userRoles;
+    private UserRole userRole;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;
