@@ -1,5 +1,6 @@
 package com.sda.auction.entitites;
 
+import com.sda.auction.entitites.enums.UserRoles;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,6 +23,8 @@ public class User {
     @Column(updatable = false)
     private Date creationDate;
     private String accountType;
+    @Column(name = "role")
+    private UserRoles userRoles;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Address address;

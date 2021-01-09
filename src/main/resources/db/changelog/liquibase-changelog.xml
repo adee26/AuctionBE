@@ -14,4 +14,6 @@
         <include file="db/changelog/auction_table.sql"/>
         <include file="db/changelog/bidding_table.sql"/>
         <include file="db/changelog/purchasing_table.sql"/>
+        <include file="db/changelog/insert_categories.sql"/>
+        <include file="db/changelog/add_user_roles.sql"/>
 </databaseChangeLog>
