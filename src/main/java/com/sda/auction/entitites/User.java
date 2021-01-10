@@ -1,5 +1,6 @@
 package com.sda.auction.entitites;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sda.auction.entitites.enums.UserRole;
 import lombok.*;
 
@@ -26,11 +27,14 @@ public class User {
     private UserRole userRole;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
     private Address address;
 
     @OneToMany (mappedBy = "user")
+    @JsonIgnore
     private List<Bidding> biddingList;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Purchasing> purchasingList;
 }

@@ -42,16 +42,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User updateUser(User user, int id) throws Exception{
-        Optional<User> userOptional = userRepository.findById(id);
-        if(userOptional.isPresent()){
-            userOptional.get().setAddress(user.getAddress());
-            userOptional.get().setAccountType(user.getAccountType());
-            userOptional.get().setEmail(user.getEmail());
-            userOptional.get().setName(user.getName());
-            userOptional.get().setPassword(user.getPassword());
-            return userRepository.save(userOptional.get());
-        }else {
-            throw new Exception("User not found");
+        try{
+            Optional<User> newUser = Optional.ofNullable(user);
+            User oldUser = userRepository.findById(id)
+                    .orElseThrow(()-> new Exception("User not found!"));
+            oldUser.setName(newUser.map(User::getName).orElse(oldUser.getName()));
+            oldUser.setEmail(newUser.map(User::getEmail).orElse(oldUser.getEmail()));
+            oldUser.setPassword(newUser.map(User::getPassword).orElse(oldUser.getPassword()));
+            oldUser.setAddress(newUser.map(User::getAddress).orElse(oldUser.getAddress()));
+            oldUser.setUserRole(newUser.map(User::getUserRole).orElse(oldUser.getUserRole()));
+            oldUser.setAccountType(newUser.map(User::getAccountType).orElse(oldUser.getAccountType()));
+            oldUser.setBiddingList(newUser.map(User::getBiddingList).orElse(oldUser.getBiddingList()));
+            oldUser.setPurchasingList(newUser.map(User::getPurchasingList).orElse(oldUser.getPurchasingList()));
+
+            return userRepository.save(oldUser);
+
+        }catch (Exception e){
+            throw new RuntimeException("User not found");
         }
+
     }
 }

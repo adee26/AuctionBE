@@ -11,4 +11,5 @@ public interface BiddingService {
     List<Bidding> findAllBiddings();
     Optional<Bidding> findById(int id);
     void deleteById(int id);
+    List<Bidding> findBiddingByUserId(int id);
 }

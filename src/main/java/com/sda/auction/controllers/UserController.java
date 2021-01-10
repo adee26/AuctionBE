@@ -30,7 +30,7 @@ public class UserController {
         userService.createUser(user);
     }
 
-    @PutMapping()
+    @PutMapping("/{id}")
     public User editUser(@RequestBody User user, @PathVariable int id) throws Exception {
         return userService.updateUser(user, id);
     }
