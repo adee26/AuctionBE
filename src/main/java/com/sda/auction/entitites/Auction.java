@@ -27,6 +27,7 @@ public class Auction {
     private LocalDateTime endDate;
 
     @OneToMany(mappedBy = "auction")
+    @JsonIgnore
     private List<Bidding> biddingList;
 
     @OneToOne(mappedBy = "auction")

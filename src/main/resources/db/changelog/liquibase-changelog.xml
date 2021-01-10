@@ -17,4 +17,5 @@
         <include file="db/changelog/add_user_roles.sql"/>
         <include file="db/changelog/insert_values.sql"/>
         <include file="db/changelog/insert_category.sql"/>
+        <include file="db/changelog/insert_user_values.sql"/>
 </databaseChangeLog>

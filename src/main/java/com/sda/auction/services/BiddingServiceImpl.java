@@ -34,4 +34,9 @@ public class BiddingServiceImpl implements BiddingService {
         biddingRepository.deleteById(id);
     }
 
+    @Override
+    public List<Bidding> findBiddingByUserId(int id) {
+        return biddingRepository.findAllByUserId(id);
+    }
+
 }
