@@ -1,5 +1,6 @@
 package com.sda.auction.controllers;
 
+import com.sda.auction.entitites.Auction;
 import com.sda.auction.entitites.Category;
 import com.sda.auction.services.CategoryService;
 import lombok.AllArgsConstructor;
@@ -38,5 +39,10 @@ public class CategoryController {
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") int id){
         categoryService.deleteById(id);
+    }
+
+    @GetMapping("/category/{id}")
+    public List<Auction> getAuctionListByCategoryId(@PathVariable("id") int id){
+        return categoryService.findById(id).get().getAuctionList();
     }
 }
