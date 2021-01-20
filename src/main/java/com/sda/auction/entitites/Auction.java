@@ -28,10 +28,12 @@ public class Auction {
 
     @OneToMany(mappedBy = "auction")
     @JsonIgnore
+    @ToString.Exclude
     private List<Bidding> biddingList;
 
     @OneToOne(mappedBy = "auction")
     @JsonIgnore
+    @ToString.Exclude
     private Purchasing purchasing;
 
 

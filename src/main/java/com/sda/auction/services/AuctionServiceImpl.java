@@ -43,18 +43,21 @@ public class AuctionServiceImpl implements AuctionService {
 
     @Override
     public Auction updateAuction(Auction auction, int id) throws Exception{
-        Optional<Auction> auctionOptional = auctionRepository.findById(id);
-        if(auctionOptional.isPresent()){
-            auctionOptional.get().setTitle(auction.getTitle());
-            auctionOptional.get().setDescription(auction.getDescription());
-            auctionOptional.get().setPhotos(auction.getPhotos());
-            auctionOptional.get().setMinimumPrice(auction.getMinimumPrice());
-            auctionOptional.get().setBuyNowPrice(auction.getBuyNowPrice());
-            auctionOptional.get().setStartDate(auction.getStartDate());
-            auctionOptional.get().setEndDate(auction.getEndDate());
-            return auctionRepository.save(auctionOptional.get());
-        }else {
-            throw new Exception("Auction not found");
+        try{
+            Optional<Auction> newAuction = Optional.ofNullable(auction);
+            Auction oldAuction = auctionRepository.findById(id)
+                    .orElseThrow(()->new Exception("Auction not found!"));
+            oldAuction.setTitle(newAuction.map(Auction::getTitle).orElse(oldAuction.getTitle()));
+            oldAuction.setDescription(newAuction.map(Auction::getDescription).orElse(oldAuction.getDescription()));
+            oldAuction.setPhotos(newAuction.map(Auction::getPhotos).orElse(oldAuction.getPhotos()));
+            oldAuction.setMinimumPrice(newAuction.map(Auction::getMinimumPrice).orElse(oldAuction.getMinimumPrice()));
+            oldAuction.setBuyNowPrice(newAuction.map(Auction::getBuyNowPrice).orElse(oldAuction.getBuyNowPrice()));
+            oldAuction.setStartDate(newAuction.map(Auction::getStartDate).orElse(oldAuction.getStartDate()));
+            oldAuction.setEndDate(newAuction.map(Auction::getEndDate).orElse(oldAuction.getEndDate()));
+
+            return auctionRepository.save(auction);
+        }catch (Exception e){
+            throw new RuntimeException("Auction not found.");
         }
     }
 

@@ -24,17 +24,19 @@ public class User {
     private Date creationDate;
     private String accountType;
     @Column(name = "role")
+    @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @ToString.Exclude
     @JsonIgnore
     private Address address;
 
     @OneToMany (mappedBy = "user")
-    @JsonIgnore
+    @ToString.Exclude
     private List<Bidding> biddingList;
 
     @OneToMany(mappedBy = "user")
-    @JsonIgnore
+    @ToString.Exclude
     private List<Purchasing> purchasingList;
 }
