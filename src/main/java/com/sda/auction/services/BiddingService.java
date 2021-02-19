@@ -1,5 +1,6 @@
 package com.sda.auction.services;
 
+import com.sda.auction.DTO.BidDTO;
 import com.sda.auction.entitites.Bidding;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface BiddingService {
     Optional<Bidding> findById(int id);
     void deleteById(int id);
     List<Bidding> findBiddingByUserId(int id);
+    void placeBid(int auctionId, BidDTO bidDTO) throws Exception;
+    Bidding updateBidding(int biddingId, Bidding bidding) throws Exception;
 }

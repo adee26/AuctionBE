@@ -1,0 +1,2 @@
+ALTER TABLE bidding
+ADD COLUMN bid INT;
