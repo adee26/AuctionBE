@@ -1,5 +1,6 @@
 package com.sda.auction.services;
 
+import com.sda.auction.DTO.UserDTO;
 import com.sda.auction.entitites.User;
 
 import java.util.List;
@@ -11,4 +12,7 @@ public interface UserService {
     Optional<User> findById(int id);
     void deleteById(int id);
     User updateUser(User user, int id) throws Exception;
+    boolean login(UserDTO userDTO);
+    int getUserIdByEmail(String email) throws Exception;
+
 }
