@@ -1,5 +1,6 @@
 package com.sda.auction.controllers;
 
+import com.sda.auction.DTO.UserDTO;
 import com.sda.auction.entitites.User;
 import com.sda.auction.services.UserService;
 import lombok.AllArgsConstructor;
@@ -33,5 +34,15 @@ public class UserController {
     @PutMapping("/{id}")
     public User editUser(@RequestBody User user, @PathVariable int id) throws Exception {
         return userService.updateUser(user, id);
+    }
+
+    @PostMapping("/login")
+    public boolean login(@RequestBody UserDTO userDTO){
+        return userService.login(userDTO);
+    }
+
+    @PostMapping("/loginId")
+    public int getUserIdByUserEmail(@RequestBody UserDTO userDTO) throws Exception {
+         return userService.getUserIdByEmail(userDTO.getEmail());
     }
 }

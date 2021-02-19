@@ -1,6 +1,8 @@
 package com.sda.auction.services;
 
+import com.sda.auction.DTO.UserDTO;
 import com.sda.auction.entitites.User;
+import com.sda.auction.entitites.enums.UserRole;
 import com.sda.auction.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User createUser(User user) {
         user.setCreationDate(Date.from(Instant.now()));
+        user.setUserRole(UserRole.USER);
         return userRepository.save(user);
     }
 
@@ -63,5 +66,24 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public boolean login(UserDTO userDTO){
+        boolean isLoggedIn = false;
+        Optional<User> user = userRepository.findUserByEmail(userDTO.getEmail());
+        if(user.isPresent()){
+            if(user.get().getPassword().equals(userDTO.getPassword())){
+                isLoggedIn = true;
+            }
+        }
+        return isLoggedIn;
+    }
 
+    @Override
+    public int getUserIdByEmail(String email) throws Exception{
+        Optional<User> user = userRepository.findUserByEmail(email);
+        if(user.isPresent()){
+            return user.get().getId();
+        }
+        throw new Exception("User not found");
+    }
 }
