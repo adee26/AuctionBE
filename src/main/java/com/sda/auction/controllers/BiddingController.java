@@ -15,7 +15,7 @@ import java.util.List;
 public class BiddingController {
     private final BiddingService biddingService;
 
-    @GetMapping("api/v1/bidding")
+    @GetMapping("api/v1/bidding/{id}")
     public List<Bidding> findBiddingByUserId(@PathVariable("id") int id){
         return biddingService.findBiddingByUserId(id);
     }

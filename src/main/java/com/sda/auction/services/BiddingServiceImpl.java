@@ -49,7 +49,7 @@ public class BiddingServiceImpl implements BiddingService {
     @Override
     public void placeBid(int auctionId, BidDTO bidDTO) throws Exception {
         Optional<Auction> auction = auctionService.findById(auctionId);
-        Optional<User> user = userService.findById(bidDTO.getUserId());
+        Optional<User> user = userService.findById(bidDTO.getId());
         List<Bidding> userBiddingList = user.get().getBiddingList();
 
         if(auction.isPresent() && user.isPresent()){
@@ -58,13 +58,14 @@ public class BiddingServiceImpl implements BiddingService {
 
                 bidding.setUser(user.get());
                 bidding.setAuction(auction.get());
+                bidding.setBid(bidDTO.getBid());
                 biddingRepository.save(bidding);
                 userBiddingList.add(bidding);
 
                 auction.get().setMinimumPrice(bidDTO.getBid());
                 auctionService.updateAuction(auction.get(), auctionId);
 
-                userService.updateUser(user.get(), bidDTO.getUserId());
+                userService.updateUser(user.get(), bidDTO.getId());
             }
         }
     }

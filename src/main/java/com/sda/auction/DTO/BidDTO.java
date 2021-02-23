@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BidDTO {
-    private int userId;
+    private int id;
     private int bid;
 }
